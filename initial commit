@@ -1,0 +1,155 @@
+using System;  
+
+  
+
+class Program {  
+
+  
+
+    public static void encrypt() {  
+
+        string alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.,?! ";  
+
+        string has_key = "No";  
+
+        int key = 0;  
+
+        string entered_key = " ";  
+
+        Console.WriteLine("Do you have a magic key you'd like to use?");  
+
+        has_key = Console.ReadLine();  
+
+        if (has_key == "Yes"){  
+
+          Console.WriteLine("Please enter the key. It must be a  positive integer: ");  
+
+          entered_key = Console.ReadLine();  
+
+          key = int.Parse(entered_key);  
+
+        }  
+
+        if (has_key == "No"){  
+
+          Console.WriteLine("Okay, I'll make one for you. Make sure you remember it as you'll need it to decrypt your message.");  
+
+          Random rnd = new Random();  
+
+          key = rnd.Next(50);  
+
+          Console.WriteLine("Your key is: " + key);  
+
+        }  
+
+        Console.WriteLine("Enter a message that you'd like to encrypt:");   
+
+        string message = Console.ReadLine();    
+
+        string newMessage = "";   
+
+        foreach (char character in message){ 
+
+          int number = alphabet.IndexOf(character); 
+
+          number = number + key; 
+
+          number = number % 67; 
+
+          newMessage = newMessage + alphabet[number]; 
+
+        }    
+
+        Console.WriteLine("Your message has been encrypted and is now '" + newMessage + "'.");   
+
+      }  
+
+  
+
+    public static void decrypt() {  
+
+      string alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.,?! ";  
+
+        string has_key = "No";  
+
+        int key = 0;  
+
+        string entered_key = " ";  
+
+        Console.WriteLine("Do you have a magic key you'd like to use?");  
+
+        has_key = Console.ReadLine();  
+
+        if (has_key == "Yes"){  
+
+          Console.WriteLine("Please enter the key. It must be a  positive integer: ");  
+
+          entered_key = Console.ReadLine();  
+
+          key = int.Parse(entered_key);  
+
+        }  
+
+        if (has_key == "No"){  
+
+          Console.WriteLine("I'm afraid you are going to need a key for this to work. ");  
+
+        }  
+
+        Console.WriteLine("Enter the message that you'd like to decrypt:");   
+
+        string message = Console.ReadLine();    
+
+        string newMessage = "";   
+
+        foreach (char character in message){    
+
+          int number = alphabet.IndexOf(character); 
+
+          number = number - key; 
+
+          number = number % 67; 
+
+          Console.WriteLine(alphabet[number]); 
+
+          newMessage = newMessage + alphabet[number];    
+
+        }    
+
+        Console.WriteLine("Your message has been decrypted to '" + newMessage + "'.");  
+
+    }  
+
+  
+
+    static void Main(string[] args) {  
+
+        Console.WriteLine("Encrypt and decrypt your own messages! Would you like to encrypt or decrypt a message?");  
+
+        string mode = Console.ReadLine();  
+
+        if (mode == "Encrypt"){  
+
+          Console.WriteLine(mode + " it is, then! Let's begin!");  
+
+          encrypt();  
+
+        }  
+
+        else if (mode == "Decrypt"){  
+
+            Console.WriteLine(mode + " it is, then! Let's begin!");  
+
+            decrypt();  
+
+        }  
+
+        else {  
+
+          Console.WriteLine("Answer with exactly 'Encrypt' or 'Decrypt'.");  
+
+        }  
+
+    }  
+
+}  
