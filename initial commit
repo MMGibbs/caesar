@@ -61,7 +61,7 @@ class Program
         foreach (char character in message)
         {
             int number = alphabet.IndexOf(character);
-            number = number - key;
+            number = number - key + 67;
             number = number % 67;
             Console.WriteLine(alphabet[number]);
             newMessage = newMessage + alphabet[number];
